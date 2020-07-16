@@ -1,5 +1,18 @@
 {% extends 'base.html' %}
-{% block body %}
-  <h1> lalala about </h1>
+{%block head%}
+  <link href="/static/css/about.css" rel="stylesheet" type="text/css" />
 
+  <!-- Import Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"/>
+   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+{% endblock %}
+
+
+{% block body %}
+  <h1> about </h1>
+  
+  <div id="map"></div>
+
+
+  <script src="/static/js/about.js"></script>
 {% endblock %}

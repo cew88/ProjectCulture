@@ -2,6 +2,16 @@ from flask import Flask, render_template
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
 
+#Clears cache
+@app.after_request
+def add_header(r):
+	r.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
+	r.headers["Pragma"] = "no-cache"
+	r.headers["Expires"] = "0"
+	r.headers['Cache-Control'] = 'public, max-age=0'
+	return r
+
+#Nav pages
 @app.route('/')
 def index():
   return render_template("index.html")
@@ -19,7 +29,6 @@ def subscribe():
   return render_template("subscribe.html")
 
 #Regional Pages
-
 @app.route('/north-america')
 def northAmerica():
   return render_template("/regions/northAmerica.html")

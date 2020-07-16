@@ -1,0 +1,11 @@
+#map {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 90%;
+  height: 75%;
+  margin-top: 200px;
+  margin-left: 5%;
+  margin-right: 5%;
+}
