@@ -18,26 +18,34 @@ map.keyboard.disable();
 
 //This be super sketchy reverse geocoding 
 var latlngstr;
-map.on('click', function(ev){
+map.on('click', async function(ev){
   
-  latlngstr = ev.latlng.lat + ',' + ev.latlng.lng;
+  
+  latlngstr = ev.latlng.lng + ',' + ev.latlng.lat;//Turns out the API takes Lng,Lat not Lat,Lng
 
-  var locationNameRequest = new XMLHttpRequest();
+  /*var locationNameRequest = new XMLHttpRequest();
   locationNameRequest.open('GET', 'https://api.maptiler.com/geocoding/' + latlngstr + '.json?key=IbN90CLdKmgfvvi2lna8', true);
   locationNameRequest.onload = function(){
     var data = JSON.parse(this.response);
     console.log(data.features);
   }
   locationNameRequest.send();
-  
-
-  //Try using another API. It's simple and accurate, but the limit isn't good.
-  /*var locationNameRequest = new XMLHttpRequest();
-  locationNameRequest.open('GET', 'https://secure.geonames.org/countryCodeJSON?lat=' + ev.latlng.lat + '&lng=' + ev.latlng.lng + '&username=wisha');
-  locationNameRequest.onload = function(){
-    var data = JSON.parse(this.response);
-    console.log(data.countryName);
-  }
-  locationNameRequest.send();
   */
+  var stateName, countryName;
+  let locationNameResponse = await fetch('https://api.maptiler.com/geocoding/' + latlngstr + '.json?key=IbN90CLdKmgfvvi2lna8', {method: 'GET'});
+  let features = (await locationNameResponse.json()).features;
+  console.log(features);
+  for(let i=0; i<features.length; i++) {
+    let feature = features[i];
+    if(feature.place_type[0] == 'state') {
+      stateName = feature.text;
+    }
+    if(feature.place_type[0] == 'country') {
+      countryName = feature.text;
+    }
+    if(countryName !== undefined && stateName !== undefined) break;
+  }
+  console.log(`country: ${countryName}; state: ${stateName}`);
+
+
 });
