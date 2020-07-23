@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{%block head%}
+  <link href="/static/css/explore.css" rel="stylesheet" type="text/css" />
+
+  <!-- Import Leaflet -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"/>
+   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+{% endblock %}
+
+
+{% block body %}
+  <div id="container">
+    <p> Click on the map to explore a country's culture! </p>
+    <div id="map-area-container">
+      <div id="map-container">
+        <div id="map"></div>
+      </div>
+      <div id="location-info-container">
+        <div id="location-info">
+          <h1 id="region-title">Welcome</h1>
+          <h4 id="region-subtitle">Click a region to view it</h4>
+          <a id="region-go-link">Click here to go to the region's page</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="/static/js/explore.js"></script>
+{% endblock %}

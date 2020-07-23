@@ -7,23 +7,50 @@
     <link href="/static/css/base.css" rel="stylesheet" type="text/css" />
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+
+    <!-- Navbar -->
     <div class="navbar navbar-default" >
       <div class="navbar-header">
-        <a class="navbar-brand" href="#"> Project Culture</a>
+        <a class="navbar-brand" href="/"> <img src="/static/images/lens.png" style="width:50px;"> </a>
       </div>
 
       <ul class="nav navbar-nav navbar-right" style="margin-right:10px">
         <li> <a href="/"> Home </a></li>
-        <li> <a href="/about"> About</a></li>
+        <li> <a href="/explore"> Explore </a></li>
+        <li> <a href="/forum"> Forum </a></li>
         <li> <a href="/contact-us"> Contact Us </a></li>
         <li> <a href="/subscribe"> Subscribe</a></li>
+        <li> <a href="/login"> Login </a></li>
       </ul>
     </div>
+    <!-- End of navbar -->
+
     {% block head %}{% endblock %}
 
   </head>
 
   <body>
-    {% block body %}{% endblock %}
+    <div class="main">
+      {% block body %}{% endblock %}
+    </div>
+    <br><br>
+    <footer>
+      <div> 
+        <h4><b>Our Mission:</b> Project Culture is a website designed to engage individuals around the world in meaningful discussion about different cultures. We aim to create a platform for people to create, educate, and propogate. </h4> 
+      </div>
+      
+      <div>
+        <a href="/explore"> Explore </a>
+      </div>
+
+      <div>
+        <a href="/contact-us"> Contact Us </a>
+      </div>
+
+      <div>
+        <a href="/subscribe"> Subscribe </a>
+      </div>
+    </footer>
+
   </body>
 </html>

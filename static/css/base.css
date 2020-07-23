@@ -1,8 +1,79 @@
-body {
-  font-family: 'Lato', sans-serif;
+html *{
+  /* We can change font color if we want */
+   color: #000;
+   font-family: 'Lato', sans-serif;
+}
+
+.main {
+  padding: 15px;
 }
 
 .navbar-default{
   background: white;
-  border: 0;
+  border: 0;   
+  font-size: 20px;
+}
+
+.title-grid {
+  display: grid;
+  grid-template-columns: 50% 50%;
+}
+
+#mission-content {
+  max-width: 50%;
+}
+
+.description-grid {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  background: rgba(246, 227, 212, 0.5);
+  text-align: center;
+  height: 500px;
+}
+
+.description-grid div{
+  padding: 30px;
+}
+
+.team-grid{
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  text-align: center;
+}
+
+.featured-story {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  margin: 30px;
+}
+
+.story-grid {
+  text-align: center;
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  margin: 30px;
+}
+
+button {
+  padding: 15px;
+  font-size: 20px;
+  background: lightblue;
+  border: none;
+  border-radius: 10px;
+}
+
+footer {
+  position: static;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  
+  display: grid;
+  grid-template-columns: 40% 20% 20% 20%;
+  
+  background-color: lightblue;
+  color: white;
+  text-align: left;
+  height: 200px;
+  padding: 30px;
 }

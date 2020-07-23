@@ -1,0 +1,43 @@
+#container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+#map-area-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap-reverse;
+  margin-top: 2em;
+  flex: 1 1 100%;
+  position: relative;
+  width: 100%;
+}
+#map-container {
+  position: relative;
+  flex: 1 1 75%;
+  min-height: 75vh;
+}
+#map {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  margin: auto;
+}
+#location-info-container {
+  flex: 1 1 25%;
+  min-width: 16em;
+  overflow: hidden;
+  padding: 0.5em;
+}
+
+#region-go-link {
+  text-decoration: underline;
+  font-size: large;
+}
+#region-go-link:not([href]) {
+  display: none;
+}
