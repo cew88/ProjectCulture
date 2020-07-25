@@ -1,33 +1,6 @@
-from flask import Flask, render_template, Response
+from flask import Flask, render_template, request, Response
 import json
-
-import pymongo
-
-client = pymongo.MongoClient("mongodb+srv://projectcultureadmin:cultureadminpassword@projectculture.mciiv.mongodb.net/ProjectCulture?retryWrites=true&w=majority")
-cluster = client.main
-collection = cluster.users
-
-
-def template():
-  return {
-    "username": "",
-    "password": "",
-    "tags": [],
-    "posts": {}
-  }
-
-def user_exists(field, value):
-  return collection.find_one({field: value})
-
-def create_user(username, password):
-  if not (user_exists("username", username)):
-    user_template = template();
-    user_template["username"] = username;
-    user_template["password"] = password;
-    collection.insert_one(user_template);
-    return user_template;
-
-create_user("hello", "world");
+import database
 
 #Initialize Flask
 app = Flask(__name__, template_folder='templates', static_folder='static')
@@ -46,7 +19,6 @@ def add_header(r):
 def index():
 	return render_template("index.html")
 
-
 @app.route('/explore')
 def explore():
 	return render_template("explore.html")
@@ -55,14 +27,24 @@ def explore():
 def forum():
   return render_template("forum.html")
 
+@app.route('/poststory', methods=["POST"])
+def post_story():
+  data = request.json
+  username = "hello"
+  title = data["title"]
+  content = data["content"]
+  database.new_post(username, title, content)
+  
+
 @app.route('/contact-us')
 def contact():
 	return render_template("contact.html")
 
-
 @app.route('/subscribe')
 def subscribe():
 	return render_template("subscribe.html")
+
+
 
 
 #Region Info. Includes Name, Subtitle, and Url.
