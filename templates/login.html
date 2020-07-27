@@ -1,8 +1,55 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 
   <head>
-    
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="static/css/login.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    </script>
   </head>
 
+  <body>
+	<!-- Login heading -->
+	<h3 style="margin-left:44%; margin-top:2.5%"><b>Login</b></h3>
+      <hr></hr>
+      
+      <!-- Username textbox -->
+        <div class = "container centerContainer">
+          <div class = "col-md-3 centerBoxes space">
+            <label><b>Username</b></label>
+            <input type = "text" placeholder = "Enter Username" class = "embellish" id = "username-input">
+          </div>
+          
+          <!-- Password textbox -->
+          <div class = "col-md-3 centerBoxes space">
+            <label class = "centerLabels"><b>Password</b></label>
+            <input type = "password" placeholder = "Enter Password" class = "embellish" id = "password-input">
+      
+            <!-- "Show Password" button -->
+            <input type = "checkbox" id = "button" name = "button" class = "space">
+            <label for = "button">Show Password</label>
+        </div>
+      </div>
+      
+      <!-- Login button -->
+      <button type = "button" class = "loginButton">Login</button>
+      
+        <!-- Function for show password -->
+            <script>
+              var show = false;
+              var id = document.getElementById("password-input");
+              
+              $("#button").click(function()
+              {
+                show = !show
+                if (show)
+                {
+                   id.type = "text";
+                }
+                else
+                {
+                  id.type = "password";
+                }
+              });
+              </script>
+      </body>
 </html>

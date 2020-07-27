@@ -1,0 +1,33 @@
+input[type = text], input[type = password]{
+  padding: 5px;
+}
+.embellish{
+  border-radius: 5px;
+  border: 2px solid lightblue;
+}
+
+.centerBoxes{
+  margin: auto;
+  width: 50%;
+}
+
+.space{
+  margin-top: 15px;
+}
+
+.centerContainer{
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  transform: translate(-50%, -50%)
+}
+
+.loginButton{
+  border-radius: 10px;
+  border: 1px solid grey;
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  transform: translate(-70%, 410%)
+}
+
