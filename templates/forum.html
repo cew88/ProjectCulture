@@ -1,7 +1,36 @@
 {% extends 'base.html' %}
 {% block body %}
+  <link rel="stylesheet" href="/static/css/forum.css">
 
-  <button id="post-story"> Push me </button>
+  <button id="post-modal-button"> Compose new post </button>
+
+  <div id="post-modal" class="modal">
+    <div class="post-modal-content">
+      <span class="close">&times;</span>
+      <div id="alert">
+        <h4> Incomplete: Please enter a title/body for your post. </h4>
+      </div>
+
+      <h3> Title your post: </h3>
+      <input class="form-control" type="text" id="post-title" maxlength="100" placeholder="Type here to get started..."></input>
+      
+      <h3> Compose your post: </h3>
+      <textarea class="content" id="post-content" placeholder="Type here to get started..."></textarea>
+
+     <h3> Add tags to help us classify your post: </h3>
+     <input class="form-control" type="text" id="added-story-tag" maxlength="100" placeholder="Type here to get started..."></input>
+
+    <!-- Drag and drop boxes -->
+    <div class="droptarget" id="tag-box1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <div class="droptarget" id="tag-box2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+
+    <br><br>
+
+    <button class="modal-button" id="add-tag-button"> Add tag </button>
+    <button class="modal-button" id="post-content-button"> Post </button>
+
+    </div>  
+  </div>
 
 
   <div class="featured-story">
@@ -12,7 +41,7 @@
     </div>
 
     <div>
-      
+      <!-- IMAGE PERHAPS?-->
     </div>
 
   </div>

@@ -6,6 +6,7 @@ html *{
 
 .main {
   padding: 15px;
+  min-height: 1000px;
 }
 
 .navbar-default{
@@ -17,6 +18,11 @@ html *{
 .title-grid {
   display: grid;
   grid-template-columns: 50% 50%;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: auto auto auto;
 }
 
 #mission-content {

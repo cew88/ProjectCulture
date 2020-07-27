@@ -33,9 +33,8 @@ def post_story():
   username = "hello"
   title = data["title"]
   content = data["content"]
-  database.new_post(username, title, content)
+  database.new_post(username, title, content);
   
-
 @app.route('/contact-us')
 def contact():
 	return render_template("contact.html")
@@ -44,7 +43,9 @@ def contact():
 def subscribe():
 	return render_template("subscribe.html")
 
-
+@app.route('/login')
+def login():
+  return render_template("login.html")
 
 
 #Region Info. Includes Name, Subtitle, and Url.

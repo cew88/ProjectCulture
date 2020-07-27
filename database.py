@@ -25,8 +25,8 @@ def create_user(username, password):
     return user_template;
 
 def new_post(username, title, content):
-  if (user_exists("username", username)):
-    collection.update_one({"username": username}, {"$set": {"posts." + title: content}})
+  #if (user_exists("username", username)):
+  collection.update_one({"username": username}, {"$set": {"posts." + title: content}})
 
 def delete_post(username, title):
   if (user_exists("username", username)):
