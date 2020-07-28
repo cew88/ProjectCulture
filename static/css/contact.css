@@ -1,0 +1,32 @@
+input[type = text]{
+  padding: 5px;
+  border-radius: 5px;
+  height: 50px;
+  width: 90%;
+  border: 2px solid lightblue;
+}
+
+.round
+{
+  border-radius: 10px;
+  border: 2px solid black;
+  width: 38%;
+}
+#message-input
+{
+  height: 42%;
+}
+#message-input[type="text"]::placeholder
+{
+  position: relative;
+  bottom: 70px;
+}
+#message-input:focus
+{
+  padding-bottom: 145px;
+}
+.centerContainer
+{
+  padding: 10px;
+  height: 450px;
+}

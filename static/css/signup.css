@@ -10,7 +10,7 @@ input[type = text], input[type = password]{
   margin-top: 5%;
 }
 
-.loginButton{
+.signUpButton{
   border-radius: 10px;
   border: none;
 }

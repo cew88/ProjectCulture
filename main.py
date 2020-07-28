@@ -47,6 +47,24 @@ def subscribe():
 def login():
   return render_template("login.html")
 
+@app.route('/verifyuser', methods=["POST"])
+def verifyuser():
+  data = request.json
+  username = data["username"]
+  password = data["password"]
+  database.verify_user(username, password);
+
+@app.route('/signup')
+def signup():
+  return render_template("signup.html")
+
+@app.route('/createnewuser', methods=["POST"])
+def createnewuser():
+  data = request.json
+  username = data["username"]
+  password = data["password"]
+  database.create_user(username, password);
+
 
 #Region Info. Includes Name, Subtitle, and Url.
 #All sort of other things could go here. eg: flag, description

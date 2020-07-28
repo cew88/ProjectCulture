@@ -1,40 +1,48 @@
 <html>
-
   <head>
     <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="static/css/login.css">
+    <link rel="stylesheet" type="text/css" href="static/css/signup.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
     </script>
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <!-- Heading -->
+    <center>
+      <h3 style="margin-top:2.5%"><b> Sign Up </b></h3>
+      <hr></hr>
+    </center>
   </head>
 
   <body>
-	  <!-- Login heading -->
-	  <center>
-      <h3 style="margin-top:2.5%"><b>Login</b></h3>
-      <hr></hr>
-      <!-- Username textbox -->
+    <center>
+      <h4 id="alert"></h4>
+        
+      </div>
+      
       <div class = "container centerContainer">
+          <!-- Username textbox -->
           <input type = "text" placeholder = "Enter Username" id = "username-input">
-
           <br><br>
-          
+
           <!-- Password textbox -->
           <input type = "password" placeholder = "Enter Password" id = "password-input">
           <br><br>
+
+          <input type = "password" placeholder = "Confirm Password" id = "confirmPassword-input">
+          <br><br>
+
           <!-- "Show Password" button -->
           <input type = "checkbox" id = "showPasswordButton" name = "showPasswordButton" class = "space">
           <label for = "showPasswordButton">Show Password</label>
+          <br><br>
 
+          <!-- Sign Up button -->
+          <button type = "button" class = "signUpButton" id="signup-button">Sign Up</button>
           <br><br>
         
-        <!-- Login button -->
-        <button type = "button" class = "loginButton" id="login-button">Login</button>
-
-        <br><br>
-        <a href="/signup"> Don't have an account? Sign up here. </a>
+          <a href="/login"> Have an account? Sign in here. </a>
       </div>
     </center>
-    <script src="static/js/login.js"></script>
-    </body>
+
+  <script src="static/js/signup.js"></script>
+  </body>
 </html>

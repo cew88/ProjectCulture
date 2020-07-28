@@ -1,43 +1,59 @@
 {% extends 'base.html' %}
 {% block body %}
+  <link rel="stylesheet" type="text/css" href="/static/css/contact.css">
   <center>
+    <h1> Contact Us </h1>
+    
+    <div class="contact-grid"> 
+      <div>
+        <img src="/static/images/faqs.png" style="width:30%">
+        <h3> FAQs </h3>
+      </div> 
+
+      <div>
+        <img src="/static/images/resources.png" style="width:30%">
+        <h3> Resources </h3>
+      </div> 
+
+      <div>
+        <img src="/static/images/bugs.png" style="width:30%">
+        <h3> Bugs & Troubleshooting </h3>
+      </div> 
+
+      <div>
+      <img src="/static/images/volunteer.png" style="width:30%">
+      <h3> Volunteer </h3>
+      </div> 
+
+      <div>
+      <img src="/static/images/donate.png" style="width:30%">
+      <h3> Donate </h3>
+      </div>
+
+      <div>
+      <img src="/static/images/community.png" style="width:30%">
+      <h3> Join our Community </h3>
+      </div> 
+    </div>
   
-  <h1> Contact Us </h1>
-  
-  <div class="contact-grid"> 
-    <div>
-      <img src="/static/images/faqs.png" style="width:30%">
-      <h3> FAQs </h3>
-    </div> 
 
-    <div>
-      <img src="/static/images/resources.png" style="width:30%">
-      <h3> Resources </h3>
-    </div> 
+    <br><br><br>
+    <h3>Questions not answered? Reach out to our team below: </h3>
+    <br>
 
-    <div>
-      <img src="/static/images/bugs.png" style="width:30%">
-      <h3> Bugs & Troubleshooting </h3>
-    </div> 
+    <div class = "container round centerContainer">
+      <h4><b>Name:</b></h4>
+      <input type = "text"  placeholder = "Enter your name..." id = "name-input">
 
-    <div>
-     <img src="/static/images/volunteer.png" style="width:30%">
-     <h3> Volunteer </h3>
-    </div> 
+      <br>
+      <h4><b>Email:</b></h4>
+      <input type = "text" placeholder = "Enter your email..." id = "email-input">
 
-    <div>
-     <img src="/static/images/donate.png" style="width:30%">
-     <h3> Donate </h3>
+      <br>
+      <h4><b>Message</b></h4>
+      <input type = "text" placeholder = "What's your message?" id = "message-input">
+      
     </div>
 
-    <div>
-     <img src="/static/images/community.png" style="width:30%">
-     <h3> Join our Community </h3>
-    </div> 
-
-  </div> 
-
-
   </center>
-
 {% endblock %}

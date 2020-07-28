@@ -1,0 +1,61 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link href="/static/css/base.css" rel="stylesheet" type="text/css" />
+    <link rel = "stylesheet" type = "text/css" href = navbar.css />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  </head>
+    <body>
+      <div class="navbar navbar-default" id = "navbar">
+      <div class="navbar-header">
+      </div>
+
+      <ul class="nav navbar-nav navbar-right" style="margin-right:10px">
+        <li> <a href="/" style = "color: black"> Home </a></li>
+        <li> <a href="/explore" style = "color: black"> Explore </a></li>
+        <li> <a href="/forum" style = "color: black"> Forum </a></li>
+        <li> <a href="/contact-us" style = "color: black"> Contact Us </a></li>
+        <li> <a href="/subscribe" style = "color: black"> Subscribe</a></li>
+        <li> <a href="/login" style = "color: black"> Login </a></li>
+      </ul>
+    </div>
+    
+      <script>
+        function genRanCol()
+        {
+          var color0 = '#'+Math.floor(10088191).toString(16);
+          var color1 = '#'+Math.floor(8060019).toString(16);
+          var color2 = '#'+Math.floor(16777042).toString(16);
+          var color3 = '#'+Math.floor(16540782).toString(16);
+          var color4 = '#'+Math.floor(15570935).toString(16);
+          var randomColor = Math.floor(Math.random()*5);
+          if (randomColor == 0)
+          {
+            return color0;
+          }
+          else if (randomColor == 1)
+          {
+            return  color1;
+          }
+          else if (randomColor == 2)
+          {
+            return  color2;
+          }
+          else if (randomColor == 3)
+          {
+           return color3;
+          }
+          else if (randomColor == 4)
+          {
+            return color4;
+          }
+        }
+      
+      document.getElementById("navbar").style.backgroundColor = genRanCol()
+      
+      </script>
+    
+    </body>
+</html>
