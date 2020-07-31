@@ -1,3 +1,4 @@
+
 // Home hover
 $(document).ready(function()
       {
@@ -83,7 +84,35 @@ $(document).ready(function()
           } 
           else
           {
-            document.getElementById("Login").classList.remove('active');
+            if($("#Login").length != 0) document.getElementById("Login").classList.remove('active');
           }
         });
-      });                        
+      });              
+$(document).ready(function()
+      {
+        $(document).mousemove(function()
+        {
+          if($("#User:hover").length != 0)
+          {
+            document.getElementById("User").classList.add('active');
+          } 
+          else
+          {
+            if($("#User").length != 0) document.getElementById("User").classList.remove('active');
+          }
+        });
+      });
+$(document).ready(function()
+      {
+        $(document).mousemove(function()
+        {
+          if($("#Logout:hover").length != 0)
+          {
+            document.getElementById("Logout").classList.add('active');
+          } 
+          else
+          {
+            if($("#Logout").length != 0) document.getElementById("Logout").classList.remove('active');
+          }
+        });
+      });                               

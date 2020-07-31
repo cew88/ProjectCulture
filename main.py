@@ -1,11 +1,12 @@
 from flask import Flask, render_template, url_for, redirect, request, session, Response
-import database
-import flask_login
+
+from appinit import app
+
+import user
+import posting
 
 import json
 
-#Initialize Flask
-app = Flask(__name__, template_folder='templates', static_folder='static')
 
 #Clears cache
 @app.after_request
@@ -57,25 +58,39 @@ def post_story():
   username = "hello"
   title = data["title"]
   content = data["content"]
-  database.new_post(username, title, content);
+  result = posting.new_post(username, title, content)
+  if result == False:
+    return Response(status=403)
+  else:
+    return Response(status=201)
   
 @app.route('/verifyuser', methods=["POST"])
 def verifyuser():
   data = request.json
   username = data["username"]
   password = data["password"]
-  database.verify_user(username, password);
+  result = user.user_signin(username, password)
+  print(result)
+  if result == False:
+    return Response("Login Failed", status=403)
+  else:
+    return Response(json.dumps(result), status=201)
 
 @app.route('/createnewuser', methods=["POST", "GET"])
 def createnewuser():
   data = request.json
   username = data["username"]
   password = data["password"]
-  if (database.user_exists(username)):
-    return "Username is taken!"
+  result = user.user_signup(username, password)
+  if result == False:
+    return Response("User creation failed", status=403)
   else:
-    database.create_user(username, password);
+    return Response(json.dumps(result), status=201)
 
+@app.route('/logoutuser')
+def logoutuser():
+  user.user_signout()
+  return redirect(url_for('forum'))
 
 #Region Info. Includes Name, Subtitle, and Url.
 #All sort of other things could go here. eg: flag, description

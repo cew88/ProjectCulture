@@ -35,9 +35,17 @@ document.getElementById("signup-button").onclick = function(){
       url:'/createnewuser',
       type: "POST",
       data: JSON.stringify({username: usernameInput.value, password: passwordInput.value}),
-      contentType: "application/json; charset=UTF-8"
+      contentType: "application/json; charset=UTF-8",
+      success: function(result, status, xhr) {
+        console.log(result);
+        window.alert("signup successful");
+        window.open("/forum","_self");
+      },
+      error: function(xhr, status, error) {
+        console.log(xhr.responseText);
+        window.alert('failed');
+      }
     });
 
-    window.open("/forum","_self");
   }
 }

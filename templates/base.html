@@ -30,7 +30,13 @@
         <li id = "Forum"> <a href="/forum"> Forum </a></li>
         <li id = "ContactUs"> <a href="/contact-us"> Contact Us </a></li>
         <li id = "Subscribe"> <a href="/subscribe"> Subscribe</a></li>
-        <li id = "Login"> <a href="/login"> Login </a></li>
+        {% if current_user.is_authenticated %}
+          <li id = "User"><a>{{ current_user.username }}</a></li>
+          <li id = "Logout"><a href="/logoutuser">Logout</a></li>
+        {% else %}
+          <li id = "Login"><a href="/login"> Login </a></li>
+        {% endif %}
+        
       </ul>
     </div>
     </div>

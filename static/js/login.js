@@ -23,12 +23,20 @@ document.getElementById("login-button").onclick = function(){
   else {
     alert.style.display = "none";
     $.ajax({
-      url:'/createnewuser',
+      url:'/verifyuser',
       type: "POST",
       data: JSON.stringify({username: usernameInput.value, password: passwordInput.value}),
-      contentType: "application/json; charset=UTF-8"
-    });
+      contentType: "application/json; charset=UTF-8",
+      success: function(result, status, xhr) {
+        console.log(result);
+        window.alert('login successful');
+        window.open("/forum","_self");
 
-    window.open("/forum","_self");
+      },
+      error: function(xhr, status, error) {
+        console.log(xhr.responseText);
+        window.alert('failed');
+      }
+    });
   }
 }
