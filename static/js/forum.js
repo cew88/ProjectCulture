@@ -11,9 +11,11 @@ span.onclick = function(){
 }
 
 window.onclick = function(event){
-  if (event.target == storyModal){
+  if (event.target == storyModal)
+  {
     storyModal.style.display = "none";
   }
+  //storyModal.style.display = "none";
 }
 
 //Handle tag drag and drop

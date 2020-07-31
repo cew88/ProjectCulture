@@ -10,8 +10,8 @@ html *{
 }
 
 .navbar-default{
-  background: white;
-  border: 0;   
+  background: lightblue;
+  border: 1px solid lightgrey;   
   font-size: 20px;
 }
 

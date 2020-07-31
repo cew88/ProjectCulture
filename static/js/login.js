@@ -13,14 +13,22 @@ $("#showPasswordButton").click(function(){
   }
 });
 
-
 document.getElementById("login-button").onclick = function(){
-  $.ajax({
-      url:'/verifyuser',
+  var alert = document.getElementById("alert");
+
+  if (usernameInput.value == "" || passwordInput.value == ""){
+    alert.innerHTML = "Incomplete: Please enter a username/password.";
+    alert.style.display = "block";
+  }
+  else {
+    alert.style.display = "none";
+    $.ajax({
+      url:'/createnewuser',
       type: "POST",
       data: JSON.stringify({username: usernameInput.value, password: passwordInput.value}),
       contentType: "application/json; charset=UTF-8"
     });
-    
-  window.open("/forum","_self");
+
+    window.open("/forum","_self");
+  }
 }

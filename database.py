@@ -13,6 +13,9 @@ def template():
     "posts": {}
   }
 
+def get_user(field, value):
+  return collection.find_one({field: value})
+
 def user_exists(username):
   return collection.find_one({"username": username})
 

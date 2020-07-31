@@ -9,22 +9,34 @@
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
 
     <!-- Navbar -->
-    <div class="navbar navbar-default" >
+    <div class="navbar navbar-default container-fluid" >
       <div class="navbar-header">
-        <a class="navbar-brand" href="/"> <img src="/static/images/lens.png" style="width:50px;"> </a>
+        <a class="navbar-brand" href="/"> <img src="/static/images/lens.png" style="width:50px; border: 2px solid lightblue; border-radius: 5px;"> </a>
+        
+     <!-- drop-down button -->   
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+     <!-- / drop-down -->       
+      
       </div>
-
+      <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right" style="margin-right:10px">
-        <li> <a href="/"> Home </a></li>
-        <li> <a href="/explore"> Explore </a></li>
-        <li> <a href="/forum"> Forum </a></li>
-        <li> <a href="/contact-us"> Contact Us </a></li>
-        <li> <a href="/subscribe"> Subscribe</a></li>
-        <li> <a href="/login"> Login </a></li>
+        <li id = "Home"> <a href = "/"> Home </a></li>
+        <li id = "Explore"> <a href="/explore"> Explore </a></li>
+        <li id = "Forum"> <a href="/forum"> Forum </a></li>
+        <li id = "ContactUs"> <a href="/contact-us"> Contact Us </a></li>
+        <li id = "Subscribe"> <a href="/subscribe"> Subscribe</a></li>
+        <li id = "Login"> <a href="/login"> Login </a></li>
       </ul>
     </div>
+    </div>
     <!-- End of navbar -->
-
+    <script src = "static/js/hover.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> 
     {% block head %}{% endblock %}
 
   </head>

@@ -1,5 +1,27 @@
 {% extends 'base.html' %}
 {% block body %}
-  <h1> sub here yeet </h1>
+
+<link rel = "stylesheet" type = "text/css" href = /static/css/subscribe.css />
+ 
+<center>
+
+  <h4 id = "alert"></h4>
+
+        <h2><b>Subscribe</b></h2>
+        <br>
+        <h4>Subscribe to receive our newest content!</h4>
+        <hr>
+        <div class = "container round">
+          <label class = "subscribe">Enter your email to become a subscriber today!</label>
+          <br><br><br>
+          <label style = "font-size: 20px">Email:</label>
+          <br>
+          <input type = "text"  placeholder = "Enter email..." id = "email-input">
+          <br><br><br>
+         <button type = "button" class = "subscribeButton" id="subscribe-button">Subscribe</button> 
+        </div>
+      </center>
+
+        <script src = "static/js/subscribe.js"></script>
 
 {% endblock %}

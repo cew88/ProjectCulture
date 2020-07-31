@@ -9,7 +9,6 @@ input[type = text]{
 .round
 {
   border-radius: 10px;
-  border: 2px solid black;
   width: 38%;
 }
 #message-input

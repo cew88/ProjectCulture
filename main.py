@@ -1,6 +1,8 @@
-from flask import Flask, render_template, request, Response
-import json
+from flask import Flask, render_template, url_for, redirect, request, session, Response
 import database
+import flask_login
+
+import json
 
 #Initialize Flask
 app = Flask(__name__, template_folder='templates', static_folder='static')
@@ -14,10 +16,14 @@ def add_header(r):
 	r.headers['Cache-Control'] = 'public, max-age=0'
 	return r
 
+
+
 #Nav pages
 @app.route('/')
 def index():
-	return render_template("index.html")
+  if ("username" in session):
+    return ("You are logged in as " + session["username"])
+  return render_template("index.html")
 
 @app.route('/explore')
 def explore():
@@ -27,14 +33,6 @@ def explore():
 def forum():
   return render_template("forum.html")
 
-@app.route('/poststory', methods=["POST"])
-def post_story():
-  data = request.json
-  username = "hello"
-  title = data["title"]
-  content = data["content"]
-  database.new_post(username, title, content);
-  
 @app.route('/contact-us')
 def contact():
 	return render_template("contact.html")
@@ -47,6 +45,20 @@ def subscribe():
 def login():
   return render_template("login.html")
 
+@app.route('/signup')
+def signup():
+  return render_template("signup.html")
+
+
+# Interact with database
+@app.route('/poststory', methods=["POST"])
+def post_story():
+  data = request.json
+  username = "hello"
+  title = data["title"]
+  content = data["content"]
+  database.new_post(username, title, content);
+  
 @app.route('/verifyuser', methods=["POST"])
 def verifyuser():
   data = request.json
@@ -54,16 +66,15 @@ def verifyuser():
   password = data["password"]
   database.verify_user(username, password);
 
-@app.route('/signup')
-def signup():
-  return render_template("signup.html")
-
-@app.route('/createnewuser', methods=["POST"])
+@app.route('/createnewuser', methods=["POST", "GET"])
 def createnewuser():
   data = request.json
   username = data["username"]
   password = data["password"]
-  database.create_user(username, password);
+  if (database.user_exists(username)):
+    return "Username is taken!"
+  else:
+    database.create_user(username, password);
 
 
 #Region Info. Includes Name, Subtitle, and Url.

@@ -1,0 +1,32 @@
+.round
+{
+  height: 50%;
+  width: 25%;
+}
+.subscribe
+{
+  font-size: 17px;
+}
+.subscribeButton{
+  border-radius: 10px;
+  border: none;
+}
+
+button {
+  padding: 10px;
+  font-size: 20px;
+  background: lightblue;
+}
+input[type = text], input[type = password]{
+  padding: 5px;
+  border-radius: 5px;
+  height: 50px;
+  width: 300px;
+  border: 2px solid lightblue;
+}
+#alert {
+  background: rgba(255, 100, 50, 0.9);
+  padding: 10px;
+  border-radius: 10px;
+  display: none;
+}
