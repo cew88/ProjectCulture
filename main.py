@@ -63,15 +63,27 @@ def get_posts():
     before_time = filters["before_time"]
     result = posting.get_posts_by_new(num, before_time)
     if result[0] != False:
-      return Response(json.dumps(result[1]), status=200)
+      return Response(json.dumps(result[1]), status=200, mimetype='application/json')
+  return Response(result[1], status=400)
+
+@app.route('/getpostbyid', methods=["GET"])
+def get_posts_by_ids():
+  data = request.args
+  ids = json.loads(data["post_ids"])
+  result = posting.get_posts_by_ids(ids)
+  if result[0] != False:
+    return Response(json.dumps(result[1]), status=200, mimetype='application/json')
   return Response(result[1], status=400)
 
 @app.route('/poststory', methods=["POST"])
 def post_story():
   data = request.json
+  print(data)
   title = data["title"]
   content = data["content"]
-  result = posting.new_post(title, content)
+  tags = data["tags"]
+  parent_id = data["parent_id"]
+  result = posting.new_post(title, content, tags, parent_id)
   if result[0] != False:
     return Response(result[1], status=201)
   return Response(result[1], status=403)
@@ -84,11 +96,9 @@ def verifyuser():
   username = data["username"]
   password = data["password"]
   result = user.user_signin(username, password)
-  print(result)
-  if result == False:
-    return Response("Login Failed", status=403)
-  else:
-    return Response(json.dumps(result), status=201)
+  if result[0] != False:
+    return Response(result[1], status=200)
+  return Response(result[1], status=403)
 
 @app.route('/createnewuser', methods=["POST", "GET"])
 def createnewuser():
@@ -96,16 +106,17 @@ def createnewuser():
   username = data["username"]
   password = data["password"]
   result = user.user_signup(username, password)
-  if result == False:
-    return Response("User creation failed", status=403)
-  else:
-    return Response(json.dumps(result), status=201)
+  if result[0] != False:
+    return Response(result[1], status=201)
+  return Response(result[1], status=403)
 
 @app.route('/logoutuser')
 def logoutuser():
   user.user_signout()
   return redirect(url_for('forum'))
 
+
+#Explore page
 #Region Info. Includes Name, Subtitle, and Url.
 #All sort of other things could go here. eg: flag, description
 regionInfoMap = {

@@ -5,39 +5,44 @@ import time as timelib
 import json
 
 import pymongo
+from bson.objectid import ObjectId
 
 
 class Post():
   username = ""
   title = ""
   content = ""
-  post_time = 0
+  time = 0
+  
+  tags = []
   
   votes = 0
 
   parent_id = ""
-  subpost_ids = {}
+  subpost_ids = []
 
 
   def to_dict(self):
     return {
-      #"post_id": self.post_id,
       "username": self.username,
       "title": self.title,
       "content": self.content,
       "time": self.time,
+      "tags": self.tags,
       "votes": self.votes,
-      "subpost_ids": json.dumps(self.subpost_ids),
+      "parent_id": self.parent_id,
+      "subpost_ids": self.subpost_ids,
     }
 
   def from_dict(self, d):
-    #if "post_id" in d: self.post_id = d["post_id"]
-    if "username" in d: self.username = d["username"],
-    if "title" in d: self.title = d["title"],
-    if "content" in d: self.content = d["content"],
-    if "time" in d: self.time = d["time"],
+    if "username" in d: self.username = d["username"]
+    if "title" in d: self.title = d["title"]
+    if "content" in d: self.content = d["content"]
+    if "tags" in d: self.tags = d["tags"]
+    if "time" in d: self.time = d["time"]
     if "votes" in d: self.votes = d["votes"],
-    if "subpost_ids" in d: self.subpost_ids = json.loads(d["subpost_ids"])
+    if "parent_id" in d: self.parent_id = d["parent_id"]
+    if "subpost_ids" in d: self.subpost_ids = d["subpost_ids"]
 
   def __init__(self, d):
     self.from_dict(d)
@@ -46,6 +51,7 @@ class Post():
     return (False, "Not implemented yet")
 
   def unupvote(self):
+    #this isn't downvote. this is when you upvoted and change your mind
     return (False, "Not implemented yet")
   
   def add_subpost(self, subpost_id):
@@ -54,17 +60,24 @@ class Post():
     subpost_ids.add(subpost_id)
     return (True, "")
 
+def prepare_query_result_for_json(r):
+  for i in r:
+    i["_id"] = str(i["_id"])
+  return r
 
-def new_post(title, content):
+def new_post(title, content, tags, parent_id):
   if current_user.is_authenticated:
     post = Post({
       "username": current_user.username,
       "title": title,
       "content": content,
+      "tags": tags,
       "time": timelib.time(),
+      "parent_id": parent_id,
     })
     try:
-      result = collection.insert_one(post.to_dict());
+      postdict = post.to_dict()
+      result = collection.insert_one(postdict)
       result = (True, str(result.inserted_id))
     except:
       result = (False, "Database failed")
@@ -77,19 +90,25 @@ def get_posts_by_new(num, before_time):
     result = collection.find({"time": {"$lt": float(before_time)}}).sort("time", pymongo.DESCENDING).limit(num)
     result = list(result)
 
-    #for r in result:
-    #  r = Post(r)
-
-    for r in result:
-      r["post_id"] = str(r["_id"])
-      del r["_id"]
+    result = prepare_query_result_for_json(result)
 
     result = (True, result)
   except:
     result = (False, "Databse failed")
   return result
 
+def get_posts_by_ids(ids):
+  idl = [ObjectId(i) for i in ids]
+  try:
+    result = collection.find({"_id": {"$in": idl}}).limit(len(idl))
+    result = list(result)
 
+    result = prepare_query_result_for_json(result)
+
+    result = (True, result)
+  except:
+    result = (False, "Databse failed")
+  return result
 
 def delete_post(username, title):
   if (current_user.is_authenticated):

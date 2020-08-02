@@ -38,7 +38,7 @@ document.getElementById("signup-button").onclick = function(){
       contentType: "application/json; charset=UTF-8",
       success: function(result, status, xhr) {
         console.log(result);
-        window.alert('Thank you ' + usernameInput.value ' for joining us!');
+        window.alert('Thank you ' + usernameInput.value + ' for joining us!');
         window.open("/forum","_self");
       },
       error: function(xhr, status, error) {

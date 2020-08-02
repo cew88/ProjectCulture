@@ -50,19 +50,22 @@ def load_user(user_id):
   return User(get_user("username", user_id))
 
 def user_signin(username, password):
+  if current_user.is_authenticated:
+    return (False, "Already logged on")
   if user_exists(username):
     user = User(collection.find_one({"username":username}))
     if user.check_password(password):
       login_user(user)
-      return True
-  return False
+      return (True, "")
+  return (False, "Incorrect username or password")
 
 def user_signout():
   logout_user()
+  return (True, "")
 
 def user_signup(username, password, email=""):
   if user_exists(username):
-    return False
+    return (False, "Username taken")
 
   user = User({
     "username": username,
@@ -71,14 +74,14 @@ def user_signup(username, password, email=""):
   
   user.set_password(password)
 
-  print(user)
   try:
-    user = user.to_dict()
-    result = collection.insert_one(user);
+    userdict = user.to_dict()
+    result = collection.insert_one(userdict);
   except:
-    return False
+    return (False, "Databse failed")
   else:
-    return True
+    login_user(user)
+    return (True, "")
 
 def get_user(field, value):
   return collection.find_one({field: value})

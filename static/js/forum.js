@@ -105,14 +105,14 @@ document.getElementById("add-tag-button").onclick = function(){
   newTag.appendChild(document.createTextNode(document.getElementById("added-story-tag").value.trim())
   );
   document.getElementById("tag-box1").appendChild(newTag);
-  document.getElementById("tag-box1").appendChild(document.createTextNode("   "));
+  document.getElementById("tag-box1").appendChild(document.createTextNode(";"));
 }
 
 //Add story to database
 document.getElementById("post-content-button").onclick = function(){
   var postTitle = document.getElementById("post-title").value;
   var postContent = document.getElementById("post-content").value;
-  var postTags = Array.from(new Set(document.getElementById("tag-box1").textContent.split("   ").slice(1, -1)));
+  var postTags = Array.from(new Set(document.getElementById("tag-box1").textContent.split(";").slice(0, -1)));
 
   var alert = document.getElementById('alert');
 
@@ -124,7 +124,12 @@ document.getElementById("post-content-button").onclick = function(){
     $.ajax({
         url:'/poststory',
         type: "POST",
-        data: JSON.stringify({title: postTitle, content: postContent, tags: postTags}),
+        data: JSON.stringify({
+          title: postTitle,
+          content: postContent,
+          tags: postTags,
+          parent_id: '',
+          }),
         contentType: "application/json; charset=UTF-8",
         success: function(result, status, xhr) {
           storyModal.style.display = 'none';
