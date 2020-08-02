@@ -33,11 +33,27 @@ function drop(event) {
   event.target.appendChild(document.getElementById(data));
 }
 
+async function load_new_posts(num, before_time) {
+  let reqUrl = '/getposts?' +
+  `num_posts=${num}&` +
+  `sort_by=new&` +
+  `filter={"before_time": ${before_time}}`;
+  let res = await fetch(reqUrl, {
+    method: 'GET',
+    });
+  posts = await res.json();
+  console.log(posts);
+}
+
 //Save original state of tag boxes when the page was loaded
 var originalBox1, originalBox2;
 window.onload = function(){
   originalBox1 = document.getElementById("tag-box1").innerHTML;
   originalBox2 = document.getElementById("tag-box2").innerHTML;
+
+  //Load new posts
+  let ts = Math.round((new Date()).getTime() / 1000);
+  load_new_posts(10, ts);
 }
 
 //Handle new tags
@@ -67,7 +83,14 @@ document.getElementById("post-content-button").onclick = function(){
       url:'/poststory',
       type: "POST",
       data: JSON.stringify({title: postTitle, content: postContent, tags: postTags}),
-      contentType: "application/json; charset=UTF-8"
+      contentType: "application/json; charset=UTF-8",
+      success: function(result, status, xhr) {
+        window.alert("posted");
+        console.log(result);
+      },
+      error: function(xhr, status, error) {
+        window.alert("failed");
+      }
     });
 
   document.getElementById("post-title").value = '';

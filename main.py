@@ -3,6 +3,7 @@ from flask import Flask, render_template, url_for, redirect, request, session, R
 from appinit import app
 
 import user
+from user import current_user
 import posting
 
 import json
@@ -51,18 +52,34 @@ def signup():
   return render_template("signup.html")
 
 
-# Interact with database
+
+@app.route('/getposts', methods=["GET"])
+def get_posts():
+  data = request.args
+  num = int(data["num_posts"])
+  sortby = data["sort_by"]
+  filters = json.loads(data["filter"])
+  if sortby == "new":
+    before_time = filters["before_time"]
+    result = posting.get_posts_by_new(num, before_time)
+    if result != False:
+      return Response(json.dumps(result), status=200)
+  return Response(status=400)
+
 @app.route('/poststory', methods=["POST"])
 def post_story():
-  data = request.json
-  username = "hello"
-  title = data["title"]
-  content = data["content"]
-  result = posting.new_post(username, title, content)
-  if result == False:
-    return Response(status=403)
+  if current_user.is_authenticated:
+    data = request.json
+    username = current_user.username
+    title = data["title"]
+    content = data["content"]
+    result = posting.new_post(username, title, content)
+    if result == False:
+      return Response(status=403)
+    else:
+      return Response(status=201)
   else:
-    return Response(status=201)
+    return Response(status=403)
   
 @app.route('/verifyuser', methods=["POST"])
 def verifyuser():
