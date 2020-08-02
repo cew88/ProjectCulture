@@ -47,25 +47,6 @@ html *{
   text-align: center;
 }
 
-.featured-story {
-  display: grid;
-  grid-template-columns: 30% 70%;
-  margin: 30px;
-}
-
-.post-grid {
-  text-align: center;
-  display: grid;
-  grid-template-columns: 20% 20% 20% 20% 20%;
-  margin: 30px;
-}
-
-.post-card {
-  padding: 2px 16px;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1);
-  height: 25%;
-  min-height: 300px;
-}
 
 button {
   padding: 15px;

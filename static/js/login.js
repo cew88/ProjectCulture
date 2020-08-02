@@ -29,13 +29,13 @@ document.getElementById("login-button").onclick = function(){
       contentType: "application/json; charset=UTF-8",
       success: function(result, status, xhr) {
         console.log(result);
-        window.alert('login successful');
+        window.alert('Welcome back ' + usernameInput.value + '!');
         window.open("/forum","_self");
 
       },
       error: function(xhr, status, error) {
         console.log(xhr.responseText);
-        window.alert('failed');
+        window.alert('Incorrect password or username: please try again.');
       }
     });
   }

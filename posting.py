@@ -1,8 +1,5 @@
-
-
 from database import posts_collection as collection
 from user import current_user
-
 import time
 
 import pymongo
@@ -14,7 +11,9 @@ def new_post(username, title, content):
         "username": username,
         "title": title,
         "content": content,
-        "time": time.time()
+        "time": time.time(),
+        "comments": [],
+        "upvotes": 0
         })
       result = str(result.inserted_id)
     except:
