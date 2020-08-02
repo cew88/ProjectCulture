@@ -25,7 +25,7 @@ def new_post(username, title, content):
 
 def get_posts_by_new(num, before_time):
   try:
-    result = collection.find({"time": {"$lt": int(before_time)}}).sort("time", pymongo.DESCENDING).limit(num)
+    result = collection.find({"time": {"$lt": float(before_time)}}).sort("time", pymongo.DESCENDING).limit(num)
     result = list(result)
     for r in result:
       del r["_id"]

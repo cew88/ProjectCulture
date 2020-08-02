@@ -38,9 +38,10 @@ async function load_new_posts(num, before_time) {
   `num_posts=${num}&` +
   `sort_by=new&` +
   `filter={"before_time": ${before_time}}`;
-  let res = await fetch(reqUrl, {
-    method: 'GET',
-    });
+  let res = await fetch(
+    reqUrl,
+    {method: 'GET',},
+    );
   posts = await res.json();
   console.log(posts);
 }
