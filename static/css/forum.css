@@ -76,11 +76,10 @@ textarea {
 /* End to modal styling */
 
 /* Post card styling*/
-/* TO DO: FIX EDGE MARGINS BECAUSE THEY'RE NOT EVEN :(*/
 .featured-story {
   margin-top: 30px;
-  margin-right: 30px;
-  margin-left: 30px;
+  margin-right: 40px;
+  margin-left: 40px;
   padding: 2px 16px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1);
   height: 25%;

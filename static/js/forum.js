@@ -15,7 +15,6 @@ window.onclick = function(event){
   {
     storyModal.style.display = "none";
   }
-  //storyModal.style.display = "none";
 }
 
 //Handle tag drag and drop

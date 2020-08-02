@@ -52,7 +52,7 @@ def signup():
   return render_template("signup.html")
 
 
-
+# Posting
 @app.route('/getposts', methods=["GET"])
 def get_posts():
   data = request.args
@@ -62,25 +62,22 @@ def get_posts():
   if sortby == "new":
     before_time = filters["before_time"]
     result = posting.get_posts_by_new(num, before_time)
-    if result != False:
-      return Response(json.dumps(result), status=200)
-  return Response(status=400)
+    if result[0] != False:
+      return Response(json.dumps(result[1]), status=200)
+  return Response(result[1], status=400)
 
 @app.route('/poststory', methods=["POST"])
 def post_story():
-  if current_user.is_authenticated:
-    data = request.json
-    username = current_user.username
-    title = data["title"]
-    content = data["content"]
-    result = posting.new_post(username, title, content)
-    if result == False:
-      return Response(status=403)
-    else:
-      return Response(status=201)
-  else:
-    return Response(status=403)
-  
+  data = request.json
+  title = data["title"]
+  content = data["content"]
+  result = posting.new_post(title, content)
+  if result[0] != False:
+    return Response(result[1], status=201)
+  return Response(result[1], status=403)
+
+
+# Users
 @app.route('/verifyuser', methods=["POST"])
 def verifyuser():
   data = request.json

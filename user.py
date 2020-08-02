@@ -31,18 +31,6 @@ class User():
   def __init__(self, d):
     self.from_dict(d)
 
-  '''
-  def is_active(self):
-    return True
-  
-  def is_authenticated(self):
-    return True  
-  
-  def is_anonymous(self):
-    return False
-  
-  
-  '''
   is_active = True
   is_authenticated = True
   is_anonymous = False
