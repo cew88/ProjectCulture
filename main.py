@@ -1,5 +1,4 @@
 from flask import Flask, render_template, url_for, redirect, request, session, Response
-
 from appinit import app
 
 import user
@@ -55,15 +54,22 @@ def signup():
 # Posting
 @app.route('/getposts', methods=["GET"])
 def get_posts():
+  #Default arguments
+  num = 10
+  sort_by = "new"
+  filter = {}
+  parent_id = ""
+
+  #Load arguments
   data = request.args
-  num = int(data["num_posts"])
-  sortby = data["sort_by"]
-  filters = json.loads(data["filter"])
-  if sortby == "new":
-    before_time = filters["before_time"]
-    result = posting.get_posts_by_new(num, before_time)
-    if result[0] != False:
-      return Response(json.dumps(result[1]), status=200, mimetype='application/json')
+  if "num_posts" in data: num = int(data["num_posts"])
+  if "sort_by" in data: sort_by = data["sort_by"]
+  if "filter" in data: filters = json.loads(data["filter"])
+  if "parent_id" in data: parent_id = str(data["parent_id"])
+  
+  result = posting.get_posts(num, sort_by, filters, parent_id)
+  if result[0] != False:
+    return Response(json.dumps(result[1]), status=200, mimetype='application/json')
   return Response(result[1], status=400)
 
 @app.route('/getpostbyid', methods=["GET"])
@@ -77,12 +83,14 @@ def get_posts_by_ids():
 
 @app.route('/poststory', methods=["POST"])
 def post_story():
+  #Initialize default values
+  parent_id = ""
+  #Load values
   data = request.json
-  print(data)
   title = data["title"]
   content = data["content"]
   tags = data["tags"]
-  parent_id = data["parent_id"]
+  if "parent_id" in data: parent_id = str(data["parent_id"])
   result = posting.new_post(title, content, tags, parent_id)
   if result[0] != False:
     return Response(result[1], status=201)

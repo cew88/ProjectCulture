@@ -82,14 +82,14 @@ textarea {
   margin-left: 40px;
   padding: 2px 16px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.1);
-  height: 25%;
+  height: 45%;
   min-height: 300px;
 }
 
 .post-grid {
   text-align: center;
   display: grid;
-  grid-template-columns: auto auto auto auto;
+  grid-template-columns: 25% 25% 25% 25%;
   margin: 30px;
 }
 
@@ -103,13 +103,23 @@ textarea {
 
 .title {
   padding: 30px;
-  font-size: 100px;
+  font-size: 30px;
 }
 
 .content {
-  font-size: 100px;
+  font-size: 20px;
 }
 
 .username {
-  font-size: 100px;
+  font-size: 12px;
+}
+
+.zoom {
+  transition: transform .2s; /* Animation */
+  margin: 0 auto;
+}
+
+.zoom:hover {
+  border: 1px solid black;
+  transform: scale(1.05); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }

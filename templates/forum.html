@@ -1,13 +1,11 @@
 {% extends 'base.html' %}
 {% block body %}
   <link rel="stylesheet" href="/static/css/forum.css">
-
   <button id="post-modal-button"> Compose new post </button>
   <div id="post-modal" class="modal animateIn">
     <div class="post-modal-content">
       <span class="close">&times;</span>
       <div id="alert"></div>
-
       <h3> Title your post: </h3>
       <input class="form-control" type="text" id="post-title" maxlength="100" placeholder="Type here to get started..."></input>
       
@@ -28,9 +26,10 @@
   </div>
 
   <!-- Forum body -->
-  <div class="featured-story" id="featured-story"></div>
+  <div class="featured-story" id="featured-story">
+    <h2> Featured </h2>
+  </div>
   <div class="post-grid" id="post-grid"></div>
-
   <!-- Need filter, then list of titles that can be clicked through/sidebars that auto filter so you can "go to" the page for a specific country/custom -->
 
   <script src="/static/js/forum.js"></script>

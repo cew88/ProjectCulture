@@ -13,6 +13,7 @@ document.getElementById("subscribe-button").onclick = function()
     {
       document.getElementById("subscribe-button").innerHTML = "Subscribed!";
       alert.style.display = "none";
+      window.alert('You will now be notified of our newest content at ' + emailInput.value);
     }
   }
 

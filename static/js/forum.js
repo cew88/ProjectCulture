@@ -32,7 +32,7 @@ function drop(event) {
   event.target.appendChild(document.getElementById(data));
 }
 
-async function load_new_posts(num, before_time) {
+async function loadNewPosts(num, before_time) {
   let reqUrl = '/getposts?' +
   `num_posts=${num}&` +
   `sort_by=new&` +
@@ -59,24 +59,24 @@ async function load_new_posts(num, before_time) {
       if (key == "time"){
         date = new Date(posts[i][key] * 1000);
         date = date.toLocaleString();
-        postContent = document.createTextNode(date);
+        postContent = document.createElement("div");
+        postContent.appendChild(document.createTextNode(date));
       }
       else {
-        postContent = document.createTextNode(posts[i][key]);
+        postContent = document.createElement("div");
+        postContent.appendChild(document.createTextNode(posts[i][key]));
       }
       
       //Set classnames for elements in posts TODO: FIX STYLING, DOES NOT WORK RIGHT NOW
-      postContent.className = String.valueOf(key);
+      postContent.className = key;
 
       //Feature the first story TODO: FEATURED STORY SHOULD BE STORY WITH MOST UPVOTES
       if (i == 0){
         featured.appendChild(postContent);
-        featured.appendChild(document.createElement("br"));
       }
       //Create post-cards for the rest of the cards
       else {
         post.appendChild(postContent);
-        post.appendChild(document.createElement("br"));
         document.getElementById("post-grid").appendChild(post);
       }
     }
@@ -92,7 +92,7 @@ window.onload = function(){
 
   //Load new posts
   let ts = Math.round((new Date()).getTime() / 1000);
-  load_new_posts(10, ts)
+  loadNewPosts(10, ts)
 }
 
 //Handle new tags
