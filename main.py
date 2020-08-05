@@ -38,6 +38,10 @@ def forum():
 def contact():
 	return render_template("contact.html")
 
+@app.route('/userpage')
+def userpage():
+  return render_template("userpage.html")
+
 @app.route('/subscribe')
 def subscribe():
 	return render_template("subscribe.html")
@@ -68,6 +72,7 @@ def get_posts():
   if "parent_id" in data: parent_id = str(data["parent_id"])
   
   result = posting.get_posts(num, sort_by, filters, parent_id)
+
   if result[0] != False:
     return Response(json.dumps(result[1]), status=200, mimetype='application/json')
   return Response(result[1], status=400)
@@ -81,8 +86,8 @@ def get_posts_by_ids():
     return Response(json.dumps(result[1]), status=200, mimetype='application/json')
   return Response(result[1], status=400)
 
-@app.route('/poststory', methods=["POST"])
-def post_story():
+@app.route('/createpost', methods=["POST"])
+def create_post():
   #Initialize default values
   parent_id = ""
   #Load values

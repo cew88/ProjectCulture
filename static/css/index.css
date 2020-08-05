@@ -7,17 +7,17 @@
   border: 1px solid black;
   transform: scale(1.05); /* (150% zoom - Note: if the zoom is too large, it will go outside of the viewport) */
 }
-* {
-  margin: 0;
-  padding: 0;
-  border: 0;
-}
 
+.uniform
+{
+  height: 350px;
+  width: 80px; 
+}
 /* relevant styles */
 .img_wrap {
   position: relative;
-  height: 343px;
-  width: 81.5px;
+  height: 360px;
+  width: 80px;
 }
 
 .img_description {

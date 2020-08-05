@@ -88,28 +88,3 @@ def get_user(field, value):
 
 def user_exists(username):
   return collection.find_one({"username": username})
-
-'''
-def verify_user(username, password):
-  if user_exists(username):
-    result = collection.find_one({"username":username, "password":password})
-    if result is None:
-      return False
-    if result.username == username and result.password == password:
-      #just an extra check, in case the database query returns something weird
-      return username
-  return False
-
-def create_user(username, password):
-  if not (user_exists(username)):
-    user_template = user_template();
-    user_template["username"] = username;
-    user_template["password"] = password;
-    try:
-      result = collection.insert_one(user_template);
-    except:
-      return False
-    else:
-      return username
-  return False
-'''

@@ -25,16 +25,16 @@
       </div>
       <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav navbar-right" style="margin-right:10px">
-        <li id = "Home"> <a href = "/"> Home </a></li>
-        <li id = "Explore"> <a href="/explore"> Explore </a></li>
-        <li id = "Forum"> <a href="/forum"> Forum </a></li>
-        <li id = "ContactUs"> <a href="/contact-us"> Contact Us </a></li>
-        <li id = "Subscribe"> <a href="/subscribe"> Subscribe</a></li>
+        <li id = "Home" class = "over"> <a href = "/"> Home </a></li>
+        <li id = "Explore" class = "over"> <a href="/explore"> Explore </a></li>
+        <li id = "Forum" class = "over"> <a href="/forum"> Forum </a></li>
+        <li id = "ContactUs" class = "over"> <a href="/contact-us"> Contact Us </a></li>
+        <li id = "Subscribe" class = "over"> <a href="subscribe"> Subscribe</a></li>
         {% if current_user.is_authenticated %}
-          <li id = "User"><a>{{ current_user.username }}</a></li>
-          <li id = "Logout"><a href="/logoutuser">Logout</a></li>
+          <li id = "User"><a href = "/userpage">{{ current_user.username }}</a></li>
+          <li id = "Logout" class = "over"><a href="/logoutuser">Logout</a></li>
         {% else %}
-          <li id = "Login"><a href="/login"> Login </a></li>
+          <li id = "Login" class = "over"><a href="/login"> Login </a></li>
         {% endif %}
         
       </ul>
@@ -42,7 +42,7 @@
     </div>
     <!-- End of navbar -->
     <script src = "static/js/hover.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> 
+    <!-- script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script --> 
     {% block head %}{% endblock %}
 
   </head>

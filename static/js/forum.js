@@ -122,7 +122,7 @@ document.getElementById("post-content-button").onclick = function(){
   }
   else {
     $.ajax({
-        url:'/poststory',
+        url:'/createpost',
         type: "POST",
         data: JSON.stringify({
           title: postTitle,

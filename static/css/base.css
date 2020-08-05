@@ -65,3 +65,8 @@ footer {
   height: 200px;
   padding: 30px;
 }
+
+
+.over:hover {
+  background: #dcdbdb;
+}

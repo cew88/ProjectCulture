@@ -137,9 +137,11 @@ def get_posts(num, sort_by, filt={}, parent_id=""):
       return ("votes", pymongo.ASCENDING)
     return ("time", pymongo.DESCENDING)
 
+  
+  qarg = get_query_args(filt)
+  sarg = get_sort_args(sort_by)
   try:
-    qarg = get_query_args(filt)
-    sarg = get_sort_args(sort_by)
+    
     result = collection.find(qarg).sort(*sarg).limit(num)
     result = list(result)
     result = prepare_query_result_for_json(result)
