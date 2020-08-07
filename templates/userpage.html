@@ -1,3 +1,93 @@
-<!DOCTYPE html>
 {% extends 'base.html' %}
-i wanna die
+{% block body %}
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- Page Container -->
+<div class="w3-content w3-margin-top" style="max-width:1400px;">
+
+  <!-- The Grid -->
+  <div class="w3-row-padding">
+  
+    <!-- Left Column -->
+    <div class="w3-third" style = "height: 100%;">
+    
+      <div class="w3-white w3-text-grey w3-card-4">
+        <div class="w3-display-container">
+          <img src="static/images/avatar.png" style="width:100%" alt="Avatar">
+          <div class="w3-display-bottomleft w3-container w3-text-black">
+            <h2></h2>
+          </div>
+        </div>
+        <br>
+        <div class="w3-container">
+          <p><i class="fa fa-pencil fa-fw w3-margin-right w3-large w3-text-yellow"></i>Writer</p>
+          <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-brown"></i>London, UK</p>
+          <p> <i class="fa fa-instagram fa-fw w3-margin-right w3-large w3-text-darkblue"></i>Instagram</p>
+          <p><i class="fa fa-pencil-square-o	 fa-fw w3-margin-right w3-large w3-text-blue"></i>Favorite post written by me: *link* </p>
+          <p><i class="fa fa-heart	 fa-fw w3-margin-right w3-large w3-text-red"></i>Favorite post written by someone else: *link* </p>
+          <hr>
+          <p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right" style = "color: lightblue"></i>I like writing about:</b></p>
+          <p>Food</p>
+          <div class="w3-light-grey w3-round-xlarge w3-medium">
+            Content Content Content Content Content Content Content Content Content Content Content Content
+          </div>
+          <br>
+          <p>Art</p>
+          <div class="w3-light-grey w3-round-xlarge w3-medium">
+              Content Content Content Content Content Content Content Content Content Content Content Content
+            </div>
+            <br>
+          <p>Music</p>
+          <div class="w3-light-grey w3-round-xlarge w3-medium">
+            Content Content Content Content Content Content Content Content Content Content Content Content
+          </div>
+          <br>
+          <p>Tradition</p>
+          <div class="w3-light-grey w3-round-xlarge w3-medium">
+            Content Content Content Content Content Content Content Content Content Content Content Content
+          </div>
+          <br>
+
+          <p class="w3-large w3-text-theme"><b><i class="fa fa-globe fa-fw w3-margin-right w3-text-green"></i>Fluent in:</b></p>
+          <p>English</p>
+          <div class="w3-light-grey w3-round-xlarge">
+            <div class="w3-round-xlarge w3-blue" style="height:24px;width:100%"></div>
+          </div>
+          <p>Spanish</p>
+          <div class="w3-light-grey w3-round-xlarge">
+            <div class="w3-round-xlarge w3-blue" style="height:24px;width:55%"></div>
+          </div>
+          <p>German</p>
+          <div class="w3-light-grey w3-round-xlarge">
+            <div class="w3-round-xlarge w3-blue" style="height:24px;width:25%"></div>
+          </div>
+          <br>
+        </div>
+      </div><br>
+
+    <!-- End Left Column -->
+    </div>
+    <center>
+      
+      <div class = "w3-twothird">
+        <h3> User's post will be displayed here </h3>
+      </div>  
+    </center>
+  </div>
+
+<br>
+<center>
+<h4>Subscribe to receive our newest content!</h4>
+<hr>
+<div class = "container round">
+  <label class = "subscribe">Enter your email to become a subscriber today!</label>
+  <br><br><br>
+  <input type = "text"  placeholder = "Enter email..." id = "email-input">
+  <br><br><br>
+  <button type = "button" class = "subscribeButton" id="subscribe-button">Subscribe</button> 
+</div>
+</center>
+
+{% endblock %}  

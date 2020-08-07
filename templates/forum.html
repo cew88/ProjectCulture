@@ -1,36 +1,74 @@
 {% extends 'base.html' %}
 {% block body %}
   <link rel="stylesheet" href="/static/css/forum.css">
-  <button id="post-modal-button"> Compose new post </button>
-  <div id="post-modal" class="modal animateIn">
-    <div class="post-modal-content">
-      <span class="close">&times;</span>
-      <div id="alert"></div>
-      <h3> Title your post: </h3>
+ 
+  <div class="forum-grid-row1">
+    <div class="compose-story">
+      <div class="alert" id="alert"></div>
+      <h4> Title your post: </h4>
       <input class="form-control" type="text" id="post-title" maxlength="100" placeholder="Type here to get started..."></input>
       
-      <h3> Compose your post: </h3>
-      <textarea class="modal-content" id="post-content" placeholder="Type here to get started..."></textarea>
+      <h4> Compose your post: </h4>
+      <textarea class="modal-content" id="post-content" placeholder="Type here to get started..." style="box-shadow:none; border-radius:8px;"></textarea>
 
-     <h3> Add tags to help us classify your post: </h3>
-     <input class="form-control" type="text" id="added-story-tag" maxlength="100" placeholder="Type here to get started..."></input>
+      <h4> Add tags to help us classify your post: </h4>
+      <input class="form-control" type="text" id="added-story-tag" maxlength="100" placeholder="Type here to get started..."></input>
 
-    <!-- Drag and drop boxes -->
-    <div class="droptarget" id="tag-box1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
-    <div class="droptarget" id="tag-box2" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+      <!-- Drag and drop boxes -->
+      <div class="droptarget" id="tag-box1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+      <div class="droptarget" id="tag-box2" ondrop="drop(event)" ondragover="allowDrop(event)">
 
-    <br>
-    <button class="modal-button" id="add-tag-button"> Add tag </button>
-    <button class="modal-button" id="post-content-button"> Post </button>
-    </div>  
+        <p ondragstart="dragStart(event)" draggable="true" class="dragtarget" id="Food">Food</p>
+        <p ondragstart="dragStart(event)" draggable="true" class="dragtarget" id="Fashion">Fashion</p>
+        <p ondragstart="dragStart(event)" draggable="true" class="dragtarget" id="Art">Art</p>
+        <p ondragstart="dragStart(event)" draggable="true" class="dragtarget" id="Music">Music</p>
+        <p ondragstart="dragStart(event)" draggable="true" class="dragtarget" id="Media">Media</p>
+        <p ondragstart="dragStart(event)" draggable="true" class="dragtarget" id="Architecture">Architecture</p>
+        <p ondragstart="dragStart(event)" draggable="true" class="dragtarget" id="Sports">Sports</p>
+        <p ondragstart="dragStart(event)" draggable="true" class="dragtarget" id="Traditions">Traditions</p>
+        <p ondragstart="dragStart(event)" draggable="true" class="dragtarget" id="History">History</p>
+        <p ondragstart="dragStart(event)" draggable="true" class="dragtarget" id="LGBTQ+">LGBTQ+</p>
+        <p ondragstart="dragStart(event)" draggable="true" class="dragtarget" id="Gender-relations">Gender-relations</p>
+
+      </div>
+
+      <button class="modal-button" id="add-tag-button"> Add tag </button>
+      <button class="modal-button" id="post-content-button"> Post </button>
+    </div>
+
+
+    <!-- Forum body -->
+    <div class="featured-story-post" id="featured-story-post">
+      <h3 ><b> FEATURED </b></h3>
+      <div class="featured-story-post-content-container" id="featured-story-post-content-container">
+      </div>
+    </div>
   </div>
 
-  <!-- Forum body -->
-  <div class="featured-story" id="featured-story">
-    <h2> Featured </h2>
+  
+  <div class="post-grid" id="post-grid">
   </div>
-  <div class="post-grid" id="post-grid"></div>
+
+  
   <!-- Need filter, then list of titles that can be clicked through/sidebars that auto filter so you can "go to" the page for a specific country/custom -->
 
+  <!-- Post view -->
+  <div id="post-modal" class="modal">
+    <div id="post-modal-box">
+      <h2>POST</h2>
+      <button id="post-modal-close-button" onclick="closePostModal()" class="close-button">&#10006;</button>
+      <!-- TODO: add close button -->
+      <div id="post-modal-content-container"></div>
+      <div class="comment-area" id="comment-area"></div>
+    </div>
+  </div>
+  <script>
+    {% if current_user.is_authenticated %}
+      userIsAuthenticated = true;
+      userUsername = "{{ current_user.username }}";
+    {% else %}
+      userIsAuthenticated = false;
+    {% endif %}
+  </script>
   <script src="/static/js/forum.js"></script>
 {% endblock %}

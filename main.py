@@ -61,7 +61,7 @@ def get_posts():
   #Default arguments
   num = 10
   sort_by = "new"
-  filter = {}
+  filters = {}
   parent_id = ""
 
   #Load arguments
@@ -90,15 +90,26 @@ def get_posts_by_ids():
 def create_post():
   #Initialize default values
   parent_id = ""
+  tags = []
   #Load values
   data = request.json
   title = data["title"]
   content = data["content"]
-  tags = data["tags"]
+  if "tags" in data: tags = data["tags"]
   if "parent_id" in data: parent_id = str(data["parent_id"])
   result = posting.new_post(title, content, tags, parent_id)
   if result[0] != False:
     return Response(result[1], status=201)
+  return Response(result[1], status=403)
+
+@app.route('/votepost', methods=["POST"])
+def upvote_post():
+  data = request.json
+  post_id = data["post_id"]
+  vote = data["vote"]#1 for upvoting -1 for unupvoting
+  result = posting.vote_post(post_id, vote)
+  if result[0] != False:
+    return Response(status=200)
   return Response(result[1], status=403)
 
 
